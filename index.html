@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenido al Cajero Autoservicio </title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+    header { background: #d4001f; color: white; padding: 1rem; font-size: 1.25rem; }
+    .progress { margin-top: 0.5rem; font-size: 0.9rem; }
+    .container { display: flex; flex-wrap: wrap; padding: 1rem; }
+    main { flex: 1; min-width: 280px; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .combo-card { background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; align-items: center; padding: 0.75rem; cursor: pointer; transition: transform 0.1s; }
+    .combo-card:hover { transform: scale(1.02); }
+    .combo-card input { margin-right: 1rem; transform: scale(1.5); }
+    .combo-info { display: flex; align-items: center; }
+    .combo-info img { width: 60px; height: 60px; margin-right: 1rem; border-radius: 6px; }
+    .combo-info .details { line-height: 1.2; }
+    .combo-info .details h3 { margin: 0; font-size: 1rem; }
+    .combo-info .details p { margin: 0.25rem 0; font-size: 0.85rem; color: #555; }
+    aside { width: 250px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-left: 1rem; padding: 1rem; }
+    aside h2 { margin-top: 0; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+    aside ul { list-style: none; padding: 0; font-size: 0.9rem; }
+    aside ul li { margin-bottom: 0.5rem; }
+    footer { display: flex; justify-content: space-between; padding: 1rem; }
+    button { background: #d4001f; color: white; border: none; border-radius: 6px; padding: 0.75rem 1.5rem; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+    button:hover { background: #b30017; }
+    .secondary { background: #ccc; color: #333; }
+    .secondary:hover { background: #bbb; }
+  </style>
+</head>
+<body>
+  <header>
+    Paso 2 de 4: Seleccionar Combo
+    <div class="progress">Selecciona tu combo y revisa el resumen</div>
+  </header>
+  <div class="container">
+    <main>
+      <label class="combo-card">
+        <input type="radio" name="combo" checked>
+        <div class="combo-info">
+          <img src="https://via.placeholder.com/60" alt="Big Mac">
+          <div class="details">
+            <h3>Combo 1 - Big Mac</h3>
+            <p>S/. 15.50</p>
+          </div>
+        </div>
+      </label>
+      <label class="combo-card">
+        <input type="radio" name="combo">
+        <div class="combo-info">
+          <img src="https://via.placeholder.com/60" alt="Cuarto de Libra">
+          <div class="details">
+            <h3>Combo 2 - Cuarto de Libra</h3>
+            <p>S/. 14.75</p>
+          </div>
+        </div>
+      </label>
+      <label class="combo-card">
+        <input type="radio" name="combo">
+        <div class="combo-info">
+          <img src="https://via.placeholder.com/60" alt="McNuggets">
+          <div class="details">
+            <h3>Combo 3 - McNuggets (6 piezas)</h3>
+            <p>S/. 13.20</p>
+          </div>
+        </div>
+      </label>
+    </main>
+    <aside>
+      <h2>Resumen de pedido</h2>
+      <ul>
+        <li>Big Mac</li>
+        <li>Precio: S/. 15.50</li>
+        <li>Papas + bebida</li>
+      </ul>
+      <p><strong>Total:</strong> S/. 20.00</p>
+    </aside>
+  </div>
+  <footer>
+    <button class="secondary">← Atrás</button>
+    <button>Continuar →</button>
+  </footer>
+</body>
+</html>
