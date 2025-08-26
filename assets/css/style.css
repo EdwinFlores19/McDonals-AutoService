@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cajero Autoservicio - McDonald's Rediseñado</title>
-    <style>
-        * {
+* {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -360,7 +353,7 @@
             background: #f8f9fa;
             border-bottom: 1px solid #e9ecef;
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
         }
 
@@ -380,7 +373,6 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 12px;
-            margin-left: auto;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -400,14 +392,20 @@
 
         .cart-item {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
             padding: 15px 0;
             border-bottom: 1px solid #eee;
         }
 
         .cart-item:last-child {
             border-bottom: none;
+        }
+
+        .cart-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
         }
 
         .item-details {
@@ -418,28 +416,38 @@
             font-weight: bold;
             color: #333;
             margin-bottom: 5px;
+            font-size: 16px;
         }
 
         .item-customizations {
             font-size: 12px;
             color: #666;
+            line-height: 1.3;
+            margin-bottom: 8px;
         }
 
         .item-price {
             font-weight: bold;
             color: #DA291C;
+            font-size: 16px;
         }
 
         .quantity-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-top: 5px;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .qty-btn {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             border: 1px solid #ddd;
             background: white;
             border-radius: 4px;
@@ -447,10 +455,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: bold;
+            transition: all 0.2s ease;
         }
 
         .qty-btn:hover {
             background: #f8f9fa;
+            border-color: #FFD700;
+        }
+
+        .qty-number {
+            font-weight: bold;
+            color: #333;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .remove-item-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .remove-item-btn:hover {
+            background: #c82333;
         }
 
         .cart-empty {
@@ -648,325 +681,3 @@
                 grid-template-columns: 1fr;
             }
         }
-    </style>
-</head>
-<body>
-    <div class="kiosk-container">
-        <!-- HEADER -->
-        <div class="header">
-            <div class="header-top">
-                <div class="logo-section">
-                    <h1>🍟 McDONALD'S AUTOSERVICIO</h1>
-                </div>
-                <div class="system-status">
-                    <div class="status-indicator">
-                        <div class="status-dot"></div>
-                        <span>Sistema Activo</span>
-                    </div>
-                    <div class="status-indicator">
-                        <span>⏱ 14:23</span>
-                    </div>
-                </div>
-                <button class="help-button" onclick="toggleHelp()" aria-label="Ayuda">?</button>
-            </div>
-            
-            <div class="progress-section">
-                <div class="progress-bar-container">
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                    <div class="step-text">Paso 1 de 3: Selecciona productos</div>
-                </div>
-            </div>
-
-            <div class="help-tooltip" id="helpTooltip">
-                <strong>¿Cómo usar el cajero?</strong><br><br>
-                1️⃣ <strong>Categorías:</strong> Usa el menú izquierdo para navegar<br>
-                2️⃣ <strong>Productos:</strong> Toca para ver detalles y agregar<br>
-                3️⃣ <strong>Carrito:</strong> Revisa tu pedido a la derecha<br>
-                4️⃣ <strong>Editar:</strong> Usa el lápiz 📝 para modificar<br><br>
-                <em>💡 Tip: Todos los precios incluyen impuestos</em>
-            </div>
-        </div>
-
-        <!-- MAIN CONTAINER -->
-        <div class="main-container">
-            <!-- SIDEBAR CATEGORÍAS -->
-            <div class="sidebar">
-                <div class="categories-title">Categorías</div>
-                <button class="category-btn active" data-category="combos" onclick="selectCategory('combos')">
-                    <span class="category-icon">🍔</span>
-                    <span>Combos</span>
-                </button>
-                <button class="category-btn" data-category="hamburguesas" onclick="selectCategory('hamburguesas')">
-                    <span class="category-icon">🥩</span>
-                    <span>Hamburguesas</span>
-                </button>
-                <button class="category-btn" data-category="pollo" onclick="selectCategory('pollo')">
-                    <span class="category-icon">🍗</span>
-                    <span>Pollo</span>
-                </button>
-                <button class="category-btn" data-category="ensaladas" onclick="selectCategory('ensaladas')">
-                    <span class="category-icon">🥗</span>
-                    <span>Ensaladas</span>
-                </button>
-                <button class="category-btn" data-category="acompañamientos" onclick="selectCategory('acompañamientos')">
-                    <span class="category-icon">🍟</span>
-                    <span>Acompañamientos</span>
-                </button>
-                <button class="category-btn" data-category="postres" onclick="selectCategory('postres')">
-                    <span class="category-icon">🍨</span>
-                    <span>Postres</span>
-                </button>
-                <button class="category-btn" data-category="bebidas" onclick="selectCategory('bebidas')">
-                    <span class="category-icon">🥤</span>
-                    <span>Bebidas</span>
-                </button>
-            </div>
-
-            <!-- CONTENT AREA -->
-            <div class="content-area">
-                <div class="content-header">
-                    <h2 class="content-title" id="categoryTitle">Combos Populares</h2>
-                    <div class="view-controls">
-                        <button class="view-btn active" onclick="changeView('grid')">⊞</button>
-                        <button class="view-btn" onclick="changeView('list')">☰</button>
-                    </div>
-                </div>
-
-                <div class="error-message" id="errorMessage"></div>
-                <div class="success-message" id="successMessage"></div>
-
-                <div class="products-container">
-                    <div class="combo-grid" id="productGrid">
-                        <!-- COMBO 1 -->
-                        <div class="combo-card" data-product="combo1">
-                            <div class="combo-header">
-                                <div class="combo-image">🍔</div>
-                                <div class="combo-info">
-                                    <div class="combo-name">Big Mac Combo</div>
-                                    <div class="combo-price">$8.99</div>
-                                </div>
-                            </div>
-                            <div class="combo-description">
-                                El clásico Big Mac con papas medianas y bebida a elegir
-                            </div>
-                            <div class="combo-ingredients">
-                                <strong>Incluye:</strong> Big Mac + Papas Medianas + Bebida Mediana + Salsa
-                            </div>
-                            <div class="combo-actions">
-                                <button class="add-btn" onclick="addToCart('combo1')">
-                                    + Agregar
-                                </button>
-                                <span class="item-count" id="count-combo1">0</span>
-                            </div>
-                            <div class="selection-indicator">✓</div>
-                        </div>
-
-                        <!-- COMBO 2 -->
-                        <div class="combo-card" data-product="combo2">
-                            <div class="combo-header">
-                                <div class="combo-image">🥤</div>
-                                <div class="combo-info">
-                                    <div class="combo-name">Cuarto de Libra Combo</div>
-                                    <div class="combo-price">$9.49</div>
-                                </div>
-                            </div>
-                            <div class="combo-description">
-                                Hamburguesa Cuarto de Libra con queso, papas grandes y bebida
-                            </div>
-                            <div class="combo-ingredients">
-                                <strong>Incluye:</strong> Cuarto de Libra + Papas Grandes + Bebida Grande + Postre
-                            </div>
-                            <div class="combo-actions">
-                                <button class="add-btn" onclick="addToCart('combo2')">
-                                    + Agregar
-                                </button>
-                                <span class="item-count" id="count-combo2">0</span>
-                            </div>
-                            <div class="selection-indicator">✓</div>
-                        </div>
-
-                        <!-- COMBO 3 -->
-                        <div class="combo-card" data-product="combo3">
-                            <div class="combo-header">
-                                <div class="combo-image">🍗</div>
-                                <div class="combo-info">
-                                    <div class="combo-name">McNuggets Combo</div>
-                                    <div class="combo-price">$7.99</div>
-                                </div>
-                            </div>
-                            <div class="combo-description">
-                                6 piezas McNuggets crujientes con papas y bebida
-                            </div>
-                            <div class="combo-ingredients">
-                                <strong>Incluye:</strong> 6 McNuggets + Papas Medianas + Bebida Mediana + 2 Salsas
-                            </div>
-                            <div class="combo-actions">
-                                <button class="add-btn" onclick="addToCart('combo3')">
-                                    + Agregar
-                                </button>
-                                <span class="item-count" id="count-combo3">0</span>
-                            </div>
-                            <div class="selection-indicator">✓</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CART SIDEBAR -->
-            <div class="cart-sidebar">
-                <div class="cart-header">
-                    <div class="cart-title">
-                        🛒 Mi Pedido
-                        <span id="cartCount">(0)</span>
-                    </div>
-                    <button class="edit-btn" onclick="editOrder()">
-                        📝 Editar
-                    </button>
-                </div>
-
-                <div class="cart-content">
-                    <div class="cart-empty" id="cartEmpty">
-                        Tu carrito está vacío<br>
-                        <small>Agrega productos para comenzar</small>
-                    </div>
-                    <div id="cartItems"></div>
-                </div>
-
-                <div class="cart-summary">
-                    <div class="summary-line">
-                        <span>Subtotal:</span>
-                        <span id="subtotal">$0.00</span>
-                    </div>
-                    <div class="summary-line">
-                        <span>Impuestos:</span>
-                        <span id="taxes">$0.00</span>
-                    </div>
-                    <div class="summary-total">
-                        <span>Total:</span>
-                        <span id="total">$0.00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- BOTTOM NAVIGATION -->
-        <div class="bottom-nav">
-            <div class="nav-left">
-                <button class="btn btn-secondary" onclick="goBack()">
-                    ⬅ Atrás
-                </button>
-                <button class="btn btn-warning" onclick="clearCart()">
-                    🗑 Limpiar
-                </button>
-            </div>
-            
-            <div class="nav-right">
-                <button class="btn btn-primary" id="continueBtn" onclick="continueOrder()" disabled>
-                    Continuar 
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Estado de la aplicación
-        let cart = {};
-        let currentCategory = 'combos';
-        let currentView = 'grid';
-        
-        // Datos de productos
-        const products = {
-            combo1: { name: "Big Mac Combo", price: 8.99, category: "combos" },
-            combo2: { name: "Cuarto de Libra Combo", price: 9.49, category: "combos" },
-            combo3: { name: "McNuggets Combo", price: 7.99, category: "combos" }
-        };
-
-        const categories = {
-            combos: "Combos Populares",
-            hamburguesas: "Hamburguesas Individuales", 
-            pollo: "Pollo y Nuggets",
-            ensaladas: "Ensaladas Frescas",
-            acompañamientos: "Acompañamientos",
-            postres: "Postres y Helados",
-            bebidas: "Bebidas y Cafés"
-        };
-
-        // Principio 1: Visibilidad del estado del sistema
-        function updateSystemStatus() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('es-ES', { 
-                hour: '2-digit', 
-                minute: '2-digit' 
-            });
-            document.querySelector('.status-indicator span:last-child').textContent = ⏱ ${timeStr};
-        }
-
-        // Principio 2: Coincidencia entre el sistema y el mundo real
-        function selectCategory(category) {
-            // Remover active de todos los botones
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Activar botón seleccionado
-            document.querySelector([data-category="${category}"]).classList.add('active');
-            
-            // Actualizar título
-            document.getElementById('categoryTitle').textContent = categories[category];
-            currentCategory = category;
-            
-            // Feedback visual
-            showMessage(Navegando a: ${categories[category]}, 'success');
-        }
-
-        // Principio 3: Control y libertad del usuario
-        function addToCart(productId) {
-            if (!cart[productId]) {
-                cart[productId] = 0;
-            }
-            cart[productId]++;
-            
-            updateCartDisplay();
-            updateProductCount(productId);
-            showMessage(${products[productId].name} agregado al carrito, 'success');
-            
-            // Feedback visual en la tarjeta
-            const card = document.querySelector([data-product="${productId}"]);
-            card.classList.add('selected');
-        }
-
-        function removeFromCart(productId) {
-            if (cart[productId] && cart[productId] > 0) {
-                cart[productId]--;
-                if (cart[productId] === 0) {
-                    delete cart[productId];
-                    document.querySelector([data-product="${productId}"]).classList.remove('selected');
-                }
-                updateCartDisplay();
-                updateProductCount(productId);
-                showMessage(Producto removido del carrito, 'success');
-            }
-        }
-
-        function clearCart() {
-            if (Object.keys(cart).length === 0) {
-                showMessage('El carrito ya está vacío', 'error');
-                return;
-            }
-            
-            if (confirm('¿Estás seguro de que quieres limpiar tu carrito?')) {
-                cart = {};
-                updateCartDisplay();
-                document.querySelectorAll('.combo-card').forEach(card => {
-                    card.classList.remove('selected');
-                });
-                document.querySelectorAll('.item-count').forEach(count => {
-                    count.textContent = '0';
-                });
-                showMessage('Carrito limpiado correctamente', 'success');
-            }
-        }
-
-        // Principio 4

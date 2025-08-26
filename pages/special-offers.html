@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas Especiales - McDonald's</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        /* Estilos adicionales específicos para esta página */
+        .offers-container {
+            padding: 40px;
+            text-align: center;
+        }
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .offer-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid #FFC72C;
+        }
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .offer-image {
+            background: #DA291C;
+            color: white;
+            font-size: 60px;
+            padding: 30px 0;
+        }
+        .offer-content {
+            padding: 25px;
+        }
+        .offer-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .offer-description {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .offer-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #DA291C;
+            margin-bottom: 20px;
+        }
+        .btn-offer {
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="kiosk-container">
+        <div class="header">
+            <div class="header-top">
+                <div class="logo-section">
+                    <a href="../index.html" style="color: white; text-decoration: none;"><h1>⭐ OFERTAS ESPECIALES</h1></a>
+                </div>
+                <a href="../index.html" class="btn btn-secondary">Volver al Menú</a>
+            </div>
+        </div>
+
+        <div class="offers-container">
+            <h2 class="content-title">¡Aprovecha estas promociones únicas!</h2>
+            
+            <div class="offers-grid">
+                <!-- Oferta 1 -->
+                <div class="offer-card">
+                    <div class="offer-image">🍔+🍟</div>
+                    <div class="offer-content">
+                        <div class="offer-title">Combo Amigo</div>
+                        <div class="offer-description">Llévate 2 Big Mac Combos Medianos y ahorra. ¡Perfecto para compartir!</div>
+                        <div class="offer-price">$15.00</div>
+                        <a href="../index.html" class="btn btn-offer">Agregar al pedido</a>
+                    </div>
+                </div>
+
+                <!-- Oferta 2 -->
+                <div class="offer-card">
+                    <div class="offer-image">🍨x2</div>
+                    <div class="offer-content">
+                        <div class="offer-title">Dúo McFlurry</div>
+                        <div class="offer-description">Compra un McFlurry de Oreo y llévate el segundo a mitad de precio.</div>
+                        <div class="offer-price">$5.99</div>
+                        <a href="../index.html" class="btn btn-offer">Agregar al pedido</a>
+                    </div>
+                </div>
+
+                <!-- Oferta 3 -->
+                <div class="offer-card">
+                    <div class="offer-image">☕+🥐</div>
+                    <div class="offer-content">
+                        <div class="offer-title">Desayuno Perfecto</div>
+                        <div class="offer-description">Tu café McCafé favorito acompañado de un croissant recién horneado.</div>
+                        <div class="offer-price">$4.50</div>
+                        <a href="../index.html" class="btn btn-offer">Agregar al pedido</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

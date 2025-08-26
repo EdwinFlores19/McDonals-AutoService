@@ -1,84 +1,168 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bienvenido al Cajero Autoservicio </title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
-    header { background: #d4001f; color: white; padding: 1rem; font-size: 1.25rem; }
-    .progress { margin-top: 0.5rem; font-size: 0.9rem; }
-    .container { display: flex; flex-wrap: wrap; padding: 1rem; }
-    main { flex: 1; min-width: 280px; display: grid; grid-template-columns: 1fr; gap: 1rem; }
-    .combo-card { background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; align-items: center; padding: 0.75rem; cursor: pointer; transition: transform 0.1s; }
-    .combo-card:hover { transform: scale(1.02); }
-    .combo-card input { margin-right: 1rem; transform: scale(1.5); }
-    .combo-info { display: flex; align-items: center; }
-    .combo-info img { width: 60px; height: 60px; margin-right: 1rem; border-radius: 6px; }
-    .combo-info .details { line-height: 1.2; }
-    .combo-info .details h3 { margin: 0; font-size: 1rem; }
-    .combo-info .details p { margin: 0.25rem 0; font-size: 0.85rem; color: #555; }
-    aside { width: 250px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-left: 1rem; padding: 1rem; }
-    aside h2 { margin-top: 0; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
-    aside ul { list-style: none; padding: 0; font-size: 0.9rem; }
-    aside ul li { margin-bottom: 0.5rem; }
-    footer { display: flex; justify-content: space-between; padding: 1rem; }
-    button { background: #d4001f; color: white; border: none; border-radius: 6px; padding: 0.75rem 1.5rem; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
-    button:hover { background: #b30017; }
-    .secondary { background: #ccc; color: #333; }
-    .secondary:hover { background: #bbb; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cajero Autoservicio - McDonald's Rediseñado</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <header>
-    Paso 2 de 4: Seleccionar Combo
-    <div class="progress">Selecciona tu combo y revisa el resumen</div>
-  </header>
-  <div class="container">
-    <main>
-      <label class="combo-card">
-        <input type="radio" name="combo" checked>
-        <div class="combo-info">
-          <img src="https://via.placeholder.com/60" alt="Big Mac">
-          <div class="details">
-            <h3>Combo 1 - Big Mac</h3>
-            <p>S/. 15.50</p>
-          </div>
+    <div class="kiosk-container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-top">
+                <div class="logo-section">
+                    <h1>🍟 McDONALD'S AUTOSERVICIO</h1>
+                </div>
+                <div class="system-status">
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>Sistema Activo</span>
+                    </div>
+                    <div class="status-indicator">
+                        <span>⏱ 14:23</span>
+                    </div>
+                </div>
+                <button class="help-button" onclick="toggleHelp()" aria-label="Ayuda">?</button>
+            </div>
+            
+            <div class="progress-section">
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="step-text">Paso 1 de 3: Selecciona productos</div>
+                </div>
+            </div>
+
+            <div class="help-tooltip" id="helpTooltip">
+                <strong>¿Cómo usar el cajero?</strong><br><br>
+                1️⃣ <strong>Categorías:</strong> Usa el menú izquierdo para navegar<br>
+                2️⃣ <strong>Productos:</strong> Toca para ver detalles y agregar<br>
+                3️⃣ <strong>Carrito:</strong> Revisa tu pedido a la derecha<br>
+                4️⃣ <strong>Editar:</strong> Usa el lápiz 📝 para modificar<br><br>
+                <em>💡 Tip: Todos los precios incluyen impuestos</em>
+            </div>
         </div>
-      </label>
-      <label class="combo-card">
-        <input type="radio" name="combo">
-        <div class="combo-info">
-          <img src="https://via.placeholder.com/60" alt="Cuarto de Libra">
-          <div class="details">
-            <h3>Combo 2 - Cuarto de Libra</h3>
-            <p>S/. 14.75</p>
-          </div>
+
+        <!-- MAIN CONTAINER -->
+        <div class="main-container">
+            <!-- SIDEBAR CATEGORÍAS -->
+            <div class="sidebar">
+                <div class="categories-title">Categorías</div>
+                <button class="category-btn active" data-category="combos" onclick="selectCategory('combos')">
+                    <span class="category-icon">🍔</span>
+                    <span>Combos</span>
+                </button>
+                <button class="category-btn" data-category="hamburguesas" onclick="selectCategory('hamburguesas')">
+                    <span class="category-icon">🥩</span>
+                    <span>Hamburguesas</span>
+                </button>
+                <button class="category-btn" data-category="pollo" onclick="selectCategory('pollo')">
+                    <span class="category-icon">🍗</span>
+                    <span>Pollo</span>
+                </button>
+                <button class="category-btn" data-category="ensaladas" onclick="selectCategory('ensaladas')">
+                    <span class="category-icon">🥗</span>
+                    <span>Ensaladas</span>
+                </button>
+                <button class="category-btn" data-category="acompañamientos" onclick="selectCategory('acompañamientos')">
+                    <span class="category-icon">🍟</span>
+                    <span>Acompañamientos</span>
+                </button>
+                <button class="category-btn" data-category="postres" onclick="selectCategory('postres')">
+                    <span class="category-icon">🍨</span>
+                    <span>Postres</span>
+                </button>
+                <button class="category-btn" data-category="bebidas" onclick="selectCategory('bebidas')">
+                    <span class="category-icon">🥤</span>
+                    <span>Bebidas</span>
+                </button>
+                <a href="pages/special-offers.html" class="category-btn" style="text-decoration: none;">
+                    <span class="category-icon">⭐</span>
+                    <span>Ofertas</span>
+                </a>
+            </div>
+
+            <!-- CONTENT AREA -->
+            <div class="content-area">
+                <div class="content-header">
+                    <h2 class="content-title" id="categoryTitle">Combos Populares</h2>
+                    <div class="view-controls">
+                        <button class="view-btn active" onclick="changeView('grid')">⊞</button>
+                        <button class="view-btn" onclick="changeView('list')">☰</button>
+                    </div>
+                </div>
+
+                <div class="error-message" id="errorMessage"></div>
+                <div class="success-message" id="successMessage"></div>
+
+                <div class="products-container">
+                    <div class="combo-grid" id="productGrid">
+                        <!-- Los productos se generarán aquí con JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- CART SIDEBAR -->
+            <div class="cart-sidebar">
+                <div class="cart-header">
+                    <div class="cart-title">
+                        🛒 Mi Pedido
+                        <span id="cartCount">(0)</span>
+                    </div>
+                    <button class="edit-btn" onclick="editOrder()">
+                        📝 Editar
+                    </button>
+                </div>
+
+                <div class="cart-content">
+                    <div class="cart-empty" id="cartEmpty">
+                        Tu carrito está vacío<br>
+                        <small>Agrega productos para comenzar</small>
+                    </div>
+                    
+                    <div id="cartItems">
+                        <!-- Los items del carrito se generarán aquí -->
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="summary-line">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Impuestos (8%):</span>
+                        <span id="taxes">$0.00</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </label>
-      <label class="combo-card">
-        <input type="radio" name="combo">
-        <div class="combo-info">
-          <img src="https://via.placeholder.com/60" alt="McNuggets">
-          <div class="details">
-            <h3>Combo 3 - McNuggets (6 piezas)</h3>
-            <p>S/. 13.20</p>
-          </div>
+
+        <!-- BOTTOM NAVIGATION -->
+        <div class="bottom-nav">
+            <div class="nav-left">
+                <button class="btn btn-secondary" onclick="goBack()">
+                    ⬅ Atrás
+                </button>
+                <button class="btn btn-warning" onclick="clearCart()">
+                    🗑 Limpiar
+                </button>
+            </div>
+            
+            <div class="nav-right">
+                <button class="btn btn-primary" id="continueBtn" onclick="continueOrder()" disabled>
+                    Continuar
+                </button>
+            </div>
         </div>
-      </label>
-    </main>
-    <aside>
-      <h2>Resumen de pedido</h2>
-      <ul>
-        <li>Big Mac</li>
-        <li>Precio: S/. 15.50</li>
-        <li>Papas + bebida</li>
-      </ul>
-      <p><strong>Total:</strong> S/. 20.00</p>
-    </aside>
-  </div>
-  <footer>
-    <button class="secondary">← Atrás</button>
-    <button>Continuar →</button>
-  </footer>
+    </div>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

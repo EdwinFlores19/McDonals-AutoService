@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Pedido - McDonald's</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .confirmation-container {
+            text-align: center;
+            padding: 40px;
+        }
+        .checkmark {
+            font-size: 80px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        .order-summary {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 30px auto;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .summary-title {
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+        .summary-total-line {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="kiosk-container">
+        <div class="header">
+            <div class="header-top">
+                <div class="logo-section">
+                    <h1>✅ PEDIDO CONFIRMADO</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="confirmation-container">
+            <div class="checkmark">✓</div>
+            <h2 class="content-title">¡Gracias por tu compra!</h2>
+            <p style="font-size: 18px; color: #555;">Tu pedido <strong id="orderNumber">#00000</strong> está en preparación.</p>
+
+            <div class="order-summary">
+                <div class="summary-title">Resumen de tu pedido</div>
+                <div id="orderedItems">
+                    <!-- Items del pedido se insertarán aquí -->
+                </div>
+                <div class="summary-item summary-total-line">
+                    <span>Total Pagado:</span>
+                    <span id="finalTotal">$0.00</span>
+                </div>
+            </div>
+
+            <p>Por favor, acércate al mostrador para retirar tu pedido.</p>
+            r>
+            <button class="btn btn-primary" onclick="startNewOrder()">Iniciar un Nuevo Pedido</button>
+        </div>
+    </div>
+
+    <script src="../assets/js/order.js"></script>
+</body>
+</html>
