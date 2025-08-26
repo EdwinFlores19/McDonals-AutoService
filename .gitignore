@@ -1,0 +1,8 @@
+# Dependencias del backend
+backend/node_modules/
+
+# Archivos de base de datos de SQLite
+*.db
+
+# Logs de NPM
+npm-debug.log*
